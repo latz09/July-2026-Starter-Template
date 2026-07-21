@@ -1,13 +1,14 @@
-// components/PrivacyPolicy.jsx
-// -------------------------------------------
-// Update the four variables below per client
-// -------------------------------------------
-const businessName = 'Company Name';
-const contactEmail = 'client@email.com';
+
+import { fetchSeoSettings } from '@/utils/cms/fetchSeoSettings';
+
+
 const effectiveDate = 'January 1, 2025';
 const businessLocation = 'United States'; // e.g., "United States", "Wisconsin", etc.
 
-export default function PrivacyPolicy() {
+export default async function PrivacyPolicy() {
+	const seo = await fetchSeoSettings();
+	const businessName = seo?.siteName ?? 'Company Name';
+	const contactEmail = seo?.email ?? 'client@email.com';
 	return (
 		<section className='flex justify-center py-2 px-1'>
 			<article className='max-w-5xl px-1.5 lg:px-md py-sm'>

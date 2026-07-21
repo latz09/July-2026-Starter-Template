@@ -1,6 +1,7 @@
 // /pages/api/submitContactForm.js
 import { Resend } from 'resend';
 import { sanityClient } from '@/utils/cms/sanityConnection';
+import { fetchSeoSettings } from '@/utils/cms/fetchSeoSettings';
 import { clientConfig } from '@/utils/email-configuration/client-config/clientConfig';
 import ClientNotificationEmail from '@/emails/ClientNotificationEmail';
 import AutoResponseEmail from '@/emails/AutoResponseEmail';
@@ -12,6 +13,20 @@ export default async function handler(req, res) {
 		res.setHeader('Allow', ['POST']);
 		return res.status(405).end(`Method ${req.method} Not Allowed`);
 	}
+
+	// Live name/phone/email from the same Sanity doc the rest of the site
+	// uses. clientConfig's own values are the fallback if seoSettings
+	// hasn't been filled out yet.
+	const seo = await fetchSeoSettings();
+	const branding = {
+		...clientConfig.branding,
+		name: seo?.siteName ?? clientConfig.branding.name,
+		contactInfo: {
+			...clientConfig.branding.contactInfo,
+			phone: seo?.phone ?? clientConfig.branding.contactInfo.phone,
+			email: seo?.email ?? clientConfig.branding.contactInfo.email,
+		},
+	};
 
 	const requiredFields = clientConfig.formFields.filter((f) => f.required);
 	const missingFields = requiredFields.filter((f) => !req.body[f.name]);
@@ -43,13 +58,13 @@ export default async function handler(req, res) {
 	// so hitting "Reply" in their inbox goes straight to the person who submitted.
 	const emailsToSend = [
 		resend.emails.send({
-			from: `${clientConfig.branding.name} Website <forms@mail.latzwebdesign.com>`,
+			from: `${branding.name} Website <forms@mail.latzwebdesign.com>`,
 			to: process.env.CLIENT_EMAIL,
 			replyTo: formData.email,
 			subject: clientConfig.messaging.clientEmailSubject(formData.name),
 			react: (
 				<ClientNotificationEmail
-					branding={clientConfig.branding}
+					branding={branding}
 					fields={clientConfig.formFields}
 					formData={formData}
 					messaging={clientConfig.messaging}
@@ -63,13 +78,13 @@ export default async function handler(req, res) {
 	if (clientConfig.features?.autoResponseEmail) {
 		emailsToSend.push(
 			resend.emails.send({
-				from: `${clientConfig.branding.name} <forms@mail.latzwebdesign.com>`,
+				from: `${branding.name} <forms@mail.latzwebdesign.com>`,
 				to: formData.email,
-				replyTo: clientConfig.branding.contactInfo.email,
+				replyTo: branding.contactInfo.email,
 				subject: clientConfig.messaging.autoResponseSubject(formData.name),
 				react: (
 					<AutoResponseEmail
-						branding={clientConfig.branding}
+						branding={branding}
 						fields={clientConfig.formFields}
 						formData={formData}
 						messaging={clientConfig.messaging}

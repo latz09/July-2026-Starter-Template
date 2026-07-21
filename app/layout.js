@@ -27,7 +27,7 @@ const openSans = Open_Sans({
 
 export async function generateMetadata() {
 	const seo = await fetchSeoSettings();
-	if (!seo) return {}  
+	if (!seo) return {};
 
 	return {
 		metadataBase: new URL(seo.siteUrl),
@@ -71,8 +71,8 @@ export default async function RootLayout({ children }) {
 				<NavigationContainer />
 				{children}
 				<Analytics />
-				<Footer />
-				   <DesignSystemBadge /> 
+				<Footer businessName={seo?.siteName} />
+				<DesignSystemBadge />
 				{(await draftMode()).isEnabled && <VisualEditingClient />}
 			</body>
 		</html>
