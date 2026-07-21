@@ -49,15 +49,7 @@ const DesignAndDevelopment = () => {
 					<ButtonPreviews />
 				</section>
 
-				{/* Spacing */}
-				<section>
-					<SectionLabel
-						number='04'
-						title='Spacing Scale'
-						description='Consistent spacing keeps layouts clean and professional.'
-					/>
-					<SpacingScale />
-				</section>
+			
 			</div>
 		</div>
 	);

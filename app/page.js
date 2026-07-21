@@ -15,6 +15,7 @@ import ColorPalette from '@/components/design/ColorPalette';
 import SpacingScale from '@/components/design/SpacingScale';
 import SanitySetup from '@/data/set-up/SanitySetup';
 import SEOSetup from '@/data/set-up/SEOSetup';
+import Link from 'next/link';
 
 
 export async function generateMetadata() {
@@ -35,6 +36,9 @@ export default async function Home() {
 			<div className='max-w-3xl mx-auto grid place-items-center'>
 				<ul className='space-y-0.5'>
 					
+					<li>
+						Choose button type at <Link href="/design/buttons"><code className="text-primary font-black underline">/design/buttons</code></Link>
+					</li>
 					<li>
 						Set color palette in <code>tailwind.config.js</code>
 					</li>

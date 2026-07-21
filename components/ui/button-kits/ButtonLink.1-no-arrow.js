@@ -1,6 +1,13 @@
-// STARTER TEMPLATE BUTTON
-
 'use client';
+
+/**
+ * BUTTON KIT 1 — No Arrow
+ * ------------------------
+ * Just a background/text color swap on hover. No arrow, no motion beyond
+ * the color transition. This is the starter template's current default
+ * (components/ui/ButtonLink.js) — included here so it's directly
+ * comparable against the other kits.
+ */
 
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -17,9 +24,8 @@ const VARIANTS = {
 };
 
 /**
- * Reusable button link component.
  * @param {string} href - The destination link.
- * @param {string} variant - One of: 'primary-light', 'primary-dark', 'secondary-light', 'secondary-dark', 'dark-light', 'light-dark'.
+ * @param {string} variant - One of: 'primary-on-light', 'primary-on-dark', 'secondary-on-light', 'secondary-on-dark', 'dark-on-light', 'light-on-dark'.
  * @param {boolean} external - Whether to use target="_blank".
  * @param {string} className - Additional classes.
  * @param {string} event - Optional event name for Vercel Analytics tracking (automatically prefixed with "CTA Click - ").
@@ -27,38 +33,33 @@ const VARIANTS = {
  */
 export default function ButtonLink({
 	href = '/',
-	variant = 'primary-light',
+	variant = 'primary-on-light',
 	external = false,
 	className = '',
-	event, // Pass short name like "Hero - Free Consultation", component adds "CTA Click - " prefix
+	event,
 	children,
 	...props
 }) {
-	// Track when component mounts (page load time)
 	const pageLoadTime = useRef(null);
 	useEffect(() => {
 		pageLoadTime.current = Date.now();
 	}, []);
 
 	const baseStyles =
-	'text-button inline-flex items-center justify-center rounded transition-all duration-300 px-1 py-0.5';
+		'text-button inline-flex items-center justify-center rounded transition-all duration-300 px-1 py-0.5';
 
 	const combined = clsx(baseStyles, VARIANTS[variant], className);
 
-	// Track button clicks in Vercel Analytics when event is provided
-	// Automatically prefixes event with "CTA Click - " for consistent naming
-	// Example: event="Hero - Free Consultation" → tracks as "CTA Click - Hero - Free Consultation"
 	const handleClick = () => {
 		if (event) {
-			// Calculate time on page before click (in seconds)
 			const timeOnPage = pageLoadTime.current
 				? Math.round((Date.now() - pageLoadTime.current) / 1000)
 				: 0;
 
 			track(`CTA Click - ${event}`, {
-				destination: href, // Where the button goes
-				buttonText: typeof children === 'string' ? children : 'button', // Button label
-				timeOnPage: `${timeOnPage}s`, // How long before they clicked
+				destination: href,
+				buttonText: typeof children === 'string' ? children : 'button',
+				timeOnPage: `${timeOnPage}s`,
 			});
 		}
 	};
@@ -70,7 +71,7 @@ export default function ButtonLink({
 				className={combined}
 				target='_blank'
 				rel='noopener noreferrer'
-				onClick={handleClick} // Triggers analytics tracking on click
+				onClick={handleClick}
 				{...props}
 			>
 				{children}
@@ -80,8 +81,6 @@ export default function ButtonLink({
 
 	return (
 		<Link href={href} onClick={handleClick} className={combined} {...props}>
-			{' '}
-			{/* Triggers analytics tracking on click */}
 			{children}
 		</Link>
 	);
