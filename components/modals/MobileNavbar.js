@@ -72,7 +72,7 @@ const MobileNavbar = ({ navLinks = [], variant, logoUrl }) => {
 	return (
 		<div className='lg:hidden relative z-20'>
 			<header className='flex items-center justify-between'>
-				<Logo height={75} width={75} variant={variant} url={logoUrl} />
+				<Logo variant={variant} className='w-6 h-auto' url={logoUrl} />
 				<MenuIcon
 					isNavOpen={isNavOpen}
 					toggleNav={toggleNav}
@@ -109,7 +109,7 @@ const MobileNavbar = ({ navLinks = [], variant, logoUrl }) => {
 							<div className='flex flex-col h-full px-xs py-xs'>
 								{/* Header */}
 								<div className='flex items-center justify-between mb-xl'>
-									<Logo height={75} width={75} variant='dark' url={logoUrl}	 />
+									<Logo variant='dark' className='w-6 h-auto' url={logoUrl} />
 								</div>
 
 								{/* Links */}

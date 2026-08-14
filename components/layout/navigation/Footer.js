@@ -7,7 +7,7 @@ const Footer = ({ businessName }) => {
 	return (
 		<footer>
 			<div className='py-16 grid place-items-center '>
-				<Logo height={200} width={200} />
+				<Logo className='w-40 h-auto' />
 			</div>
 			<CopyRight businessName={businessName} />
 		</footer>

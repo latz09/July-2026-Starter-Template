@@ -1,20 +1,34 @@
 import Image from 'next/image';
-import localLogo from '@/public/images/business-name.png';
 import Link from 'next/link';
+import DefaultLogo from '@/public/images/business-name.png';
+// import VerticalLogo from '@/public/images/business-name-vertical.svg';
+// import StackedLogo from '@/public/images/business-name-stacked.svg';
 
-const Logo = ({ height, width, url }) => {
-    return (
-        <Link href='/'>
-            <div className='z-[9999]'>
-                <Image
-                    src={url || localLogo}
-                    alt='logo'
-                    width={width}
-                    height={height}
-                />
-            </div>
-        </Link>
-    );
+const logos = {
+	default: DefaultLogo,
+	// vertical: VerticalLogo,
+	// stacked: StackedLogo,
+};
+
+const Logo = ({ className, url, variant = 'default', alt = 'logo', width = 200, height = 200 }) => {
+	const LogoAsset = logos[variant] || logos.default;
+	const isSvgComponent = typeof LogoAsset === 'function';
+
+	return (
+		<Link href={url || '/'} className='z-[9999] block h-auto'>
+			{isSvgComponent ? (
+				<LogoAsset className={className} />
+			) : (
+				<Image
+					src={LogoAsset}
+					alt={alt}
+					className={className}
+					width={width}
+					height={height}
+				/>
+			)}
+		</Link>
+	);
 };
 
 export default Logo;
