@@ -2,15 +2,15 @@
 
 import { useState } from 'react';
 import ContactForm from './ContactForm';
-import { clientConfig } from '@/utils/email-configuration/client-config/clientConfig';
+import { contactConfig } from '@/data/config/contact';
 
 // Derives initial (and reset) state straight from the field config, so a
-// field rename in clientConfig.js can never leave a stale key behind here —
+// field rename in contact.js can never leave a stale key behind here —
 // that's exactly the class of bug that bit the message/description rename
 // on Classic Log Homes.
 const buildInitialFormData = () => {
 	const initial = {};
-	clientConfig.formFields.forEach((field) => {
+	contactConfig.formFields.forEach((field) => {
 		initial[field.name] = '';
 	});
 	return initial;
@@ -63,7 +63,7 @@ const SubmitContactForm = () => {
 
 	return (
 		<ContactForm
-			fields={clientConfig.formFields}
+			fields={contactConfig.formFields}
 			formData={formData}
 			handleInputChange={handleInputChange}
 			handleSubmit={handleSubmit}

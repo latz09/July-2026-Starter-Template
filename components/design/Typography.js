@@ -1,6 +1,6 @@
 export const Typography = () => {
 	return (
-		<div className='max-w-5xl mx-auto px-2 py-4 space-y-3'>
+		<div className='px-1 sm:px-1.25 md:px-2.5 lg:px-5 3xl:max-w-[130rem] 3xl:mx-auto space-y-3 m-2'>
 			<div className='border-b border-dark/20 pb-2'>
 				<p className='text-[0.75rem] font-semibold uppercase tracking-[0.05em] text-dark/50 mb-1'>Hero Title</p>
 				<h1 className='hero-title'>Hero Title</h1>

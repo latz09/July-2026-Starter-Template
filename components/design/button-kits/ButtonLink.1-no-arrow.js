@@ -15,12 +15,15 @@ import { track } from '@vercel/analytics';
 import { useEffect, useRef } from 'react';
 
 const VARIANTS = {
+	// PRIMARY
 	'primary-on-light': 'bg-primary text-light hover:opacity-90',
 	'primary-on-dark': 'bg-primary text-light hover:opacity-90',
+	// SECONDARY
 	'secondary-on-light': 'bg-secondary text-light hover:opacity-90',
 	'secondary-on-dark': 'bg-secondary text-light hover:opacity-90',
-	'dark-on-light': 'bg-dark text-light hover:opacity-90 border border-light',
-	'light-on-dark': 'bg-light text-dark hover:opacity-90 border',
+	// TERTIARY
+	'tertiary-on-light': 'bg-dark text-light hover:opacity-90 border border-light',
+	'tertiary-on-dark': 'bg-light text-dark hover:opacity-90 border',
 };
 
 /**

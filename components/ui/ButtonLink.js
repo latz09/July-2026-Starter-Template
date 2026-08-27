@@ -8,23 +8,27 @@ import { track } from '@vercel/analytics';
 import { useEffect, useRef } from 'react';
 
 const VARIANTS = {
+	// PRIMARY
 	'primary-on-light': 'bg-primary text-light hover:opacity-90',
 	'primary-on-dark': 'bg-primary text-light hover:opacity-90',
-	'secondary-on-light': 'bg-secondary text-light hover:opacity-90',
+	// SECONDARY
+	'secondary-on-light': 'bg-secondary text-dark hover:opacity-90',
 	'secondary-on-dark': 'bg-secondary text-light hover:opacity-90',
-	'dark-on-light': 'bg-dark text-light hover:opacity-90 border border-light',
-	'light-on-dark': 'bg-light text-dark hover:opacity-90 border',
+	// TERTIARY
+	'tertiary-on-light': 'bg-dark text-light hover:opacity-90 border border-light',
+	'tertiary-on-dark': 'bg-light text-dark hover:opacity-90 border',
 };
 
 /**
  * Reusable button link component.
  * @param {string} href - The destination link.
- * @param {string} variant - One of: 'primary-light', 'primary-dark', 'secondary-light', 'secondary-dark', 'dark-light', 'light-dark'.
+ * @param {string} variant - One of: 'primary-on-light', 'primary-on-dark', 'secondary-on-light', 'secondary-on-dark', 'tertiary-on-light', 'tertiary-on-dark'.
  * @param {boolean} external - Whether to use target="_blank".
  * @param {string} className - Additional classes.
  * @param {string} event - Optional event name for Vercel Analytics tracking (automatically prefixed with "CTA Click - ").
  * @param {ReactNode} children - The button label.
  */
+
 export default function ButtonLink({
 	href = '/',
 	variant = 'primary-light',
@@ -41,7 +45,7 @@ export default function ButtonLink({
 	}, []);
 
 	const baseStyles =
-	'text-button inline-flex items-center justify-center rounded transition-all duration-300 px-1 py-0.5';
+	'text-button inline-flex items-center justify-center rounded transition-all duration-300 px-1.25 py-0.75';
 
 	const combined = clsx(baseStyles, VARIANTS[variant], className);
 
@@ -63,20 +67,21 @@ export default function ButtonLink({
 		}
 	};
 
-	if (external) {
-		return (
-			<a
-				href={href}
-				className={combined}
-				target='_blank'
-				rel='noopener noreferrer'
-				onClick={handleClick} // Triggers analytics tracking on click
-				{...props}
-			>
-				{children}
-			</a>
-		);
-	}
+if (external) {
+	return (
+		<a
+			href={href}
+			className={combined}
+			target='_blank'
+			rel='noopener noreferrer'
+			onClick={handleClick}
+			{...props}
+		>
+			{children}
+			<span className='sr-only'> (opens in new tab)</span>
+		</a>
+	);
+}
 
 	return (
 		<Link href={href} onClick={handleClick} className={combined} {...props}>

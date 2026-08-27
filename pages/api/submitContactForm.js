@@ -2,7 +2,7 @@
 import { Resend } from 'resend';
 import { sanityClient } from '@/utils/cms/sanityConnection';
 import { fetchSeoSettings } from '@/utils/cms/fetchSeoSettings';
-import { clientConfig } from '@/utils/email-configuration/client-config/clientConfig';
+import { clientConfig } from '@/data/config/contact';
 import ClientNotificationEmail from '@/emails/ClientNotificationEmail';
 import AutoResponseEmail from '@/emails/AutoResponseEmail';
 

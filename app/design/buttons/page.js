@@ -1,7 +1,8 @@
-import ButtonKit1 from '@/components/ui/button-kits/ButtonLink.1-no-arrow';
-import ButtonKit2 from '@/components/ui/button-kits/ButtonLink.2-swap-side';
-import ButtonKit3 from '@/components/ui/button-kits/ButtonLink.3-grow-line';
-import ButtonKit4 from '@/components/ui/button-kits/ButtonLink.4-spread';
+import Section from '@/components/layout/Section';
+import ButtonKit1 from '@/components/design/button-kits/ButtonLink.1-no-arrow';
+import ButtonKit2 from '@/components/design/button-kits/ButtonLink.2-swap-side';
+import ButtonKit3 from '@/components/design/button-kits/ButtonLink.3-grow-line';
+import ButtonKit4 from '@/components/design/button-kits/ButtonLink.4-spread';
 
 // Dev-only comparison page — not for client eyes, keep it out of search.
 export const metadata = {
@@ -40,10 +41,10 @@ const KITS = [
 
 export default function ButtonKitsPreviewPage() {
 	return (
-		<div className='max-w-container mx-auto px-1 py-3 space-y-4'>
+		<Section className='max-w-container mx-auto px-1 py-3 space-y-4'>
 			<div>
 				<h1>Button Kits</h1>
-				<p className='text-paragraph opacity-70 max-w-2xl'>
+				<p className='text-paragraph '>
 					{`Hover each button to compare. Pick the one closest to the current
 					design, copy that file's contents into`} {''}
 					<code>components/ui/ButtonLink.js</code>, retheme the colors, then
@@ -101,6 +102,6 @@ export default function ButtonKitsPreviewPage() {
 					</div>
 				</div>
 			</section>
-		</div>
+		</Section>
 	);
 }

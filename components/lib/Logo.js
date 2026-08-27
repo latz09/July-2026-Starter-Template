@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import DefaultLogo from '@/public/images/business-name.png';
-// import VerticalLogo from '@/public/images/business-name-vertical.svg';
-// import StackedLogo from '@/public/images/business-name-stacked.svg';
+import DefaultLogo from '@/public/images/logos/business-name.png';
+import WhiteLogo from '@/public/images/logos/business-name-white.png';
+// import VerticalLogo from '@/public/images/logos/business-name-vertical.svg';
+// import StackedLogo from '@/public/images/logos/business-name-stacked.svg';
 
 const logos = {
 	default: DefaultLogo,
+	white: WhiteLogo,
 	// vertical: VerticalLogo,
 	// stacked: StackedLogo,
 };

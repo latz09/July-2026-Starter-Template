@@ -1,8 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
-import { draftMode } from 'next/headers';
-import VisualEditingClient from '@/components/ui/VisualEditingClient';
-
-import Footer from '@/components/layout/navigation/Footer';
+import Footer from '@/components/layout/footer/Footer';
 import { fetchSeoSettings } from '@/utils/cms/fetchSeoSettings';
 import { buildOrganizationSchema } from '@/lib/seo/buildOrganizationSchema';
 import JsonLd from '@/components/seo/JsonLd';
@@ -27,7 +24,7 @@ const openSans = Open_Sans({
 
 export async function generateMetadata() {
 	const seo = await fetchSeoSettings();
-	if (!seo) return {};
+	if (!seo?.siteUrl) return {};
 
 	return {
 		metadataBase: new URL(seo.siteUrl),
@@ -69,11 +66,10 @@ export default async function RootLayout({ children }) {
 			<body className={`min-h-screen ${fustat.variable} ${openSans.variable}`}>
 				{schema && <JsonLd data={schema} />}
 				<NavigationContainer />
-				{children}
+				<main>{children}</main>
 				<Analytics />
 				<Footer businessName={seo?.siteName} />
 				<DesignSystemBadge />
-				{(await draftMode()).isEnabled && <VisualEditingClient />}
 			</body>
 		</html>
 	);

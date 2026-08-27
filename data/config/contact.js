@@ -1,5 +1,4 @@
-// /utils/email-configuration/client-config/clientConfig.js
-export const clientConfig = {
+export const contactConfig = {
 	branding: {
 		name: 'CLIENT_NAME',
 		logoUrl:

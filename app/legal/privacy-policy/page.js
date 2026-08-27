@@ -1,4 +1,5 @@
 
+import Section from '@/components/layout/Section';
 import { fetchSeoSettings } from '@/utils/cms/fetchSeoSettings';
 
 
@@ -10,7 +11,7 @@ export default async function PrivacyPolicy() {
 	const businessName = seo?.siteName ?? 'Company Name';
 	const contactEmail = seo?.email ?? 'client@email.com';
 	return (
-		<section className='flex justify-center py-2 px-1'>
+		<Section className='flex justify-center '>
 			<article className='max-w-5xl px-1.5 lg:px-md py-sm'>
 				{/* HEADER */}
 				<header className='mb-md'>
@@ -226,6 +227,6 @@ export default async function PrivacyPolicy() {
 					</p>
 				</section>
 			</article>
-		</section>
+		</Section>
 	);
 }

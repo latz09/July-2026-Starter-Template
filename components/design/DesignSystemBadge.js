@@ -5,13 +5,13 @@ import Link from 'next/link';
 const DesignSystemBadge = () => {
     const pathname = usePathname();
     const router = useRouter();
-    const isDesignPage = pathname === '/design-and-development';
+    const isDesignPage = pathname === '/design';
 
     if (isDesignPage) {
         return (
             <button
                 onClick={() => router.back()}
-                className='fixed bottom-1 right-1 z-50 flex items-center gap-0.75 bg-pookiePink border border-dark/0 text-dark text-[0.875rem] font-mono px-1.25 py-0.75 rounded-full shadow-lg lg:text-xl hover:bg-dark hover:border-pookiePink hover:text-cream transition-all duration-200'
+                className='fixed bottom-1 right-1 z-50 flex items-center gap-0.75 border border-primary bg-primary px-1.25 py-0.75 rounded text-white hover:bg-white hover:text-primary transition duration-300 text-caption'
             >
                 ← go back
             </button>
@@ -20,11 +20,11 @@ const DesignSystemBadge = () => {
 
     return (
         <Link
-            href='/design-and-development'
-            className='fixed bottom-1 right-1 z-50 flex items-center gap-0.75 bg-pookiePink text-cream text-[0.875rem] font-mono px-1.25 py-0.75 rounded-full shadow-lg hover:bg-goldDark transition-all duration-200 group'
+            href='/design'
+            className='fixed bottom-1  right-1 z-50 flex items-center gap-0.75 bg-light hover:border hover:border-secondary px-1.25 py-0.75 rounded-full transition-all duration-200 group'
         >
-            <span className='text-dark lg:text-xl group-hover:text-pookiePink'>✦</span>
-            <span className='max-w-0 lg:text-xl overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap'>
+            <span className='text-primary lg:text-2xl group-hover:text-secondary'>✦</span>
+            <span className='max-w-0 text-caption overflow-hidden group-hover:max-w-xs transition-all text-primary duration-300 whitespace-nowrap'>
                 design system
             </span>
         </Link>

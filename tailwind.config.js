@@ -13,10 +13,8 @@ module.exports = {
 			secondary: '#35B3E4',
 			accent: '#DAEAEF',
 			tertiary: '#D42AEF',
-
 			dark: '#001A2C',
 			light: '#F1F1F1',
-
 			transparent: 'transparent',
 			current: 'currentColor',
 			white: '#ffffff',
@@ -28,7 +26,12 @@ module.exports = {
 			secondary: ['var(--font-open-sans)', ...fontFamily.sans],
 		},
 
-		// Full spacing scale - customize all values here
+		// Emptied out — this project's type sizes come from the clamp()-based
+		// h1-h6 tags and .text-* classes in globals.css, not Tailwind's
+		// default scale. Without this, text-lg/text-2xl/etc. would still be
+		// usable and show up in autocomplete alongside the real classes.
+		fontSize: {},
+
 		spacing: {
 			0: '0',
 			0.25: '0.25rem',
@@ -37,33 +40,50 @@ module.exports = {
 			1: '1rem',
 			1.25: '1.25rem',
 			1.5: '1.5rem',
+			1.75: '1.75rem',
 			2: '2rem',
+			2.25: '2.25rem',
 			2.5: '2.5rem',
+			2.75: '2.75rem',
 			3: '3rem',
+			3.25: '3.25rem',
+			3.5: '3.5rem',
 			3.75: '3.75rem',
 			4: '4rem',
+			4.25: '4.25rem',
+			4.5: '4.5rem',
+			4.75: '4.75rem',
 			5: '5rem',
+			5.25: '5.25rem',
 			5.5: '5.5rem',
+			5.75: '5.75rem',
 			6: '6rem',
+			6.25: '6.25rem',
+			6.5: '6.5rem',
+			6.75: '6.75rem',
+			7: '7rem',
+			7.25: '7.25rem',
 			7.5: '7.5rem',
+			7.75: '7.75rem',
 			8: '8rem',
+			8.25: '8.25rem',
+			8.5: '8.5rem',
 			8.75: '8.75rem',
+			9: '9rem',
+			9.25: '9.25rem',
+			9.5: '9.5rem',
+			9.75: '9.75rem',
 			10: '10rem',
+			10.25: '10.25rem',
+			10.5: '10.5rem',
+			10.75: '10.75rem',
+			11: '11rem',
+			11.25: '11.25rem',
+			11.5: '11.5rem',
+			11.75: '11.75rem',
 			12: '12rem',
-			16: '16rem',
-			22: '22rem',
-			24: '24rem',
-			32: '32rem',
-			// Design system spacing
-			none: '0',
-			xxs: '1rem', // 16px
-			xs: '1.5rem', // 24px
-			sm: '2rem', // 32px
-			md: '2.5rem', // 40px
-			lg: '4rem', // 64px
-			xl: '5rem', // 80px
-			xxl: '8.75rem', // 140px
 		},
+
 		zIndex: {
 			0: '0',
 			10: '10',
@@ -71,13 +91,15 @@ module.exports = {
 			30: '30',
 			40: '40',
 			50: '50',
+			overlay: '9998',
+			modal: '9999',
 			auto: 'auto',
 		},
 
 		borderRadius: {
 			none: '0',
-			DEFAULT: '1rem',
-			sm: '0.5rem',
+			DEFAULT: '0.5rem',
+			sm: '0.35rem',
 			lg: '1rem',
 			'2xl': '1rem',
 			full: '9999px',
@@ -101,32 +123,7 @@ module.exports = {
 			transitionDuration: {
 				DEFAULT: '300ms',
 			},
-			animation: {
-				scroll: 'scroll 70s linear infinite',
-			},
-			keyframes: {
-				scroll: {
-					'0%': { transform: 'translateX(0)' },
-					'100%': { transform: 'translateX(-50%)' },
-				},
-			},
 		},
 	},
-	plugins: [
-		function ({ addUtilities }) {
-			addUtilities({
-				'.scrollbar-hide': {
-					'-ms-overflow-style': 'none',
-					'scrollbar-width': 'none',
-					'&::-webkit-scrollbar': {
-						display: 'none',
-					},
-				},
-				'.no-scroll': {
-					overflow: 'hidden !important',
-					height: '100% !important',
-				},
-			});
-		},
-	],
+	plugins: [],
 };

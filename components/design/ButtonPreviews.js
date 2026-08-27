@@ -1,37 +1,45 @@
-import ButtonLink from "../ui/ButtonLink";
+import ButtonLink from '../ui/ButtonLink';
+
+const LIGHT_BUTTONS = [
+	{ variant: 'primary-on-light', label: 'Primary on Light' },
+	{ variant: 'secondary-on-light', label: 'Secondary on Light' },
+	{ variant: 'tertiary-on-light', label: 'Tertiary on Light' },
+];
+
+const DARK_BUTTONS = [
+	{ variant: 'primary-on-dark', label: 'Primary on Dark' },
+	{ variant: 'secondary-on-dark', label: 'Secondary on Dark' },
+	{ variant: 'tertiary-on-dark', label: 'Tertiary on Dark' },
+];
 
 const ButtonPreviews = () => {
 	return (
-		<div className="my-3">
-			{/* Light background buttons */}
-			<div className='max-w-5xl mx-auto px-2 grid place-items-center border-t'>
-				<div className='py-1 flex gap-1'>
-					<ButtonLink variant='primary-on-light' href='#'>
-						Primary on Light
-					</ButtonLink>
-					<ButtonLink variant='secondary-on-light' href='#'>
-						Secondary on Light
-					</ButtonLink>
-					<ButtonLink variant='dark-on-light' href='#'>
-						Dark on Light
-					</ButtonLink>
+		<div className='max-w-5xl mx-auto px-2 py-3 space-y-2'>
+			{/* Light background group */}
+			<div className='rounded-lg border border-dark/10 shadow-soft overflow-hidden'>
+				<p className='text-caption uppercase tracking-wide text-dark/50 px-2 pt-1.5'>
+					On Light Background
+				</p>
+				<div className='flex flex-wrap gap-1 justify-center px-2 py-2'>
+					{LIGHT_BUTTONS.map(({ variant, label }) => (
+						<ButtonLink key={variant} variant={variant} href='#'>
+							{label}
+						</ButtonLink>
+					))}
 				</div>
 			</div>
 
-			{/* Dark background section */}
-			<div className='bg-dark grid place-items-center'>
-				<div className='max-w-5xl mx-auto px-2'>
-					<div className='py-1 flex gap-1'>
-						<ButtonLink variant='primary-on-dark' href='#'>
-							Primary on Dark
+			{/* Dark background group */}
+			<div className='rounded-lg bg-dark overflow-hidden'>
+				<p className='text-caption uppercase tracking-wide text-light/50 px-2 pt-1.5'>
+					On Dark Background
+				</p>
+				<div className='flex flex-wrap gap-1 justify-center px-2 py-2'>
+					{DARK_BUTTONS.map(({ variant, label }) => (
+						<ButtonLink key={variant} variant={variant} href='#'>
+							{label}
 						</ButtonLink>
-						<ButtonLink variant='secondary-on-dark' href='#'>
-							Secondary on Dark
-						</ButtonLink>
-						<ButtonLink variant='light-on-dark' href='#'>
-							Light on Dark
-						</ButtonLink>
-					</div>
+					))}
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--nav-h: 12svh;
+
+	/* Default: hero clears the nav automatically. Override this one line
+	   per client if a project wants a different gap — e.g. 6svh, 3rem,
+	   or 0 for full overlap behind the nav. */
+	/* --hero-pt: var(--nav-h); */
+	--hero-pt: 4rem;
+
+	/* Per-project: pick which config color drives typography.
+	   Swap these two lines and every heading/utility below updates. */
+	--heading-color: theme('colors.dark');
+	--accent-color: theme('colors.secondary');
+}
+
+main > *:first-child {
+	padding-top: var(--hero-pt);
+}
+
+html {
+	@apply scroll-smooth;
+}
 
 body {
 	@apply bg-light font-default;
 	@apply antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+/* :focus-visible only fires for keyboard/programmatic focus, not mouse
+   clicks — so this doesn't ring every button on click, only when someone's
+   actually tabbing through the page. */
+:focus-visible {
+	outline: 2px solid theme('colors.primary');
+	outline-offset: 2px;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scroll {
+	overflow: hidden !important;
+	height: 100% !important;
+}
+
+.section-x-padding {
+	@apply px-1 sm:px-1.25 md:px-2.5 lg:px-5 3xl:max-w-[130rem] 3xl:mx-auto;
 }
 
 @layer base {
@@ -17,20 +64,52 @@ body {
 	h4,
 	h5,
 	h6 {
-		/* Prevent orphans and widows */
+		color: var(--heading-color);
+		font-family: var(--font-heading);
+		font-weight: 600;
+		letter-spacing: -0.025em;
+
 		orphans: 2;
 		widows: 2;
-
-		/* Try to keep words together when possible */
 		word-break: normal;
 		overflow-wrap: break-word;
-
-		/* Subtle improvement for line breaks */
-		text-wrap: pretty; /* Modern browsers only */
+		text-wrap: pretty;
 	}
 
+	h1 {
+		font-size: clamp(2.25rem, 7vw, 6rem);
+		line-height: 1;
+	}
+
+	h2 {
+		font-size: clamp(2rem, 6vw, 4rem);
+		line-height: 1;
+	}
+
+	h3 {
+		font-size: clamp(1.75rem, 4.5vw, 3rem);
+		line-height: 1.1;
+	}
+
+	h4 {
+		font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+		line-height: 1.1;
+	}
+
+	h5 {
+		font-size: clamp(1.25rem, 2.5vw, 2rem);
+		line-height: 1.2;
+	}
+
+	h6 {
+		font-size: clamp(1.125rem, 2vw, 1.75rem);
+		line-height: 1.2;
+	}
+}
+
+@layer components {
 	.hero-title {
-		color: #002e49;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
 		font-size: clamp(2.75rem, 9vw, 7rem);
 		font-weight: 600;
@@ -43,148 +122,45 @@ body {
 		overflow-wrap: break-word;
 		text-wrap: pretty;
 	}
-	/* Style all h1 elements directly */
-	h1 {
-		color: #002e49;
-		font-family: var(
-			--font-heading
-		); /* This is already Barlow Semi Condensed */
-		font-size: clamp(2.25rem, 7vw, 6rem);
-		font-weight: 600;
-		line-height: 1;
-		letter-spacing: -0.025em;
-	}
-
-	/* Style all h2 elements directly */
-	h2 {
-		color: #002e49;
-		font-family: var(--font-heading);
-		font-size: clamp(2rem, 6vw, 4rem); /* ~32px min, 64px max */
-		font-style: normal;
-		font-weight: 600;
-		line-height: 1; /* 100% */
-		letter-spacing: -0.025em;
-	}
-
-	/* Style all h3 elements directly */
-	h3 {
-		color: #002e49;
-		font-family: var(--font-heading);
-		font-size: clamp(1.75rem, 4.5vw, 3rem); /* ~28px min, 48px max */
-		font-style: normal;
-		font-weight: 600;
-		line-height: 1.1; /* 110% */
-		letter-spacing: -0.025em;
-	}
-
-	/* Style all h4 elements directly */
-	h4 {
-		color: #002e49;
-		font-family: var(--font-heading);
-		font-size: clamp(1.5rem, 3.5vw, 2.5rem); /* ~24px min, 40px max */
-		font-style: normal;
-		font-weight: 600;
-		line-height: 1.1; /* 110% */
-		letter-spacing: -0.025em;
-	}
-
-	/* Style all h5 elements directly */
-	h5 {
-		color: #002e49;
-		font-family: var(--font-heading);
-		font-size: clamp(1.25rem, 2.5vw, 2rem); /* ~20px min, 32px max */
-		font-style: normal;
-		font-weight: 600;
-		line-height: 1.2; /* 120% */
-		letter-spacing: -0.025em;
-	}
-
-	/* Style all h6 elements directly */
-	h6 {
-		color: #002e49;
-		font-family: var(--font-heading);
-		font-size: clamp(1.125rem, 2vw, 1.75rem); /* ~18px min, 28px max */
-		font-style: normal;
-		font-weight: 600;
-		line-height: 1.2; /* 120% */
-		letter-spacing: -0.025em;
-	}
-
-	/* Typography utilities  */
 
 	.text-overline {
-		color: #802a00;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
-		font-size: clamp(1rem, 1.5vw, 1.25rem); /* ~16px min, 20px max */
-		font-style: normal;
+		font-size: clamp(1rem, 1.5vw, 1.25rem);
 		font-weight: 400;
 		line-height: 1;
 		letter-spacing: 1px;
 	}
 
 	.text-subheading {
-		color: #002e49;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
-		font-size: clamp(1.37rem, 2vw, 1.5rem); /* ~20px min, 24px max */
-		font-style: normal;
+		font-size: clamp(1.37rem, 2vw, 1.5rem);
 		font-weight: 400;
 		line-height: 1.25;
 	}
 
 	.text-paragraph {
-		color: #002e49;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
-		font-size: clamp(1.25rem, 2vw, 1.5rem); /* ~20px min, 24px max */
-		font-style: normal;
+		font-size: clamp(1.25rem, 2vw, 1.5rem);
 		font-weight: 400;
 		line-height: 1.35;
 	}
 
 	.text-caption {
-		color: #002e49;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
-		font-size: clamp(0.875rem, 1.25vw, 1rem); /* ~14px min, 16px max */
-		font-style: normal;
+		font-size: clamp(0.875rem, 1.25vw, 1rem);
 		font-weight: 400;
 		line-height: 1;
 	}
 
 	.text-button {
-		color: #802a00;
+		color: var(--heading-color);
 		font-family: var(--font-heading);
-		font-size: clamp(1rem, 1.5vw, 1.25rem); /* ~16px min, 20px max */
-		font-style: normal;
+		font-size: clamp(1rem, 1.5vw, 1.25rem);
 		font-weight: 600;
 		line-height: 1.05;
 	}
-}
-
-html {
-	@apply scroll-smooth;
-}
-
-
-
-
-
-
-
-
-.dot-bg {
-	@apply bg-[radial-gradient(#BFBBAA_1px,_transparent_0px)] bg-[length:16px_16px];
-}
-
-
-.scrollbar-hide {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-	display: none; /* Chrome, Safari, Opera */
-}
-
-.no-scroll {
-	overflow: hidden !important;
-	height: 100% !important;
 }

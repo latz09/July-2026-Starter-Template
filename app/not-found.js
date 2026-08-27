@@ -1,18 +1,37 @@
+// app/not-found.js
 import Link from 'next/link';
+import Section from '@/components/layout/Section';
+import ButtonLink from '@/components/ui/ButtonLink';
+import PageContainer from '@/components/animations/PageContainer';
 
 export default function NotFound() {
-  return (
-    <section className="min-h-[60vh] flex flex-col items-center justify-center px-4 text-center bg-light text-dark">
-      <h1 className="text-5xl font-bold mb-4">Page Not Found</h1>
-      <p className="text-lg mb-6 max-w-xl">
-        Oops! The page you are looking for does not exist or has been moved.
-      </p>
-      <Link
-        href="/"
-        className="px-6 py-2 bg-primary text-light rounded-md shadow-md hover:bg-dark transition"
-      >
-        Go back home
-      </Link>
-    </section>
-  );
+	return (
+		<PageContainer>
+			<Section className='min-h-[70svh] grid place-items-center text-center'>
+				<div className='space-y-1.5'>
+					<span className='text-overline'>Error 404</span>
+					<h1 className=''>Page not found</h1>
+					<p className='text-paragraph max-w-2xl mx-auto'>
+						{`The page you're looking for doesn't exist or may have been moved.`}
+					</p>
+
+					<div className='flex flex-wrap items-center justify-center gap-1 pt-1'>
+						<ButtonLink
+							href='/'
+							variant='primary-on-light'
+							event='404 - Back to Home'
+						>
+							Back to Home
+						</ButtonLink>
+						<Link
+							href='/contact'
+							className='text-button underline underline-offset-2'
+						>
+							Contact Us
+						</Link>
+					</div>
+				</div>
+			</Section>
+		</PageContainer>
+	);
 }
