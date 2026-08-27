@@ -5,6 +5,7 @@ import Link from 'next/link';
 // requires — update this list if the template's config surface changes.
 const CHECKLIST = [
 	{ task: 'Set the color palette', location: 'tailwind.config.js' },
+		{ task: 'Update typography', location: 'globals.css' },
 	{
 		task: 'Confirm heading + accent colors map right for this client',
 		location: 'app/globals.css (--heading-color, --accent-color)',
