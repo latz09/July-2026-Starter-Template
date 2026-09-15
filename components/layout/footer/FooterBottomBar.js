@@ -9,6 +9,8 @@ const currentYear = new Date().getFullYear();
 // not something to assume.
 const FooterBottomBar = ({
 	businessName = 'Your Business Name',
+	email,
+	phone,
 	showPoweredBy = true,
 }) => {
 	return (
