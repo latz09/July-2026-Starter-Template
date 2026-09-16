@@ -116,9 +116,15 @@ module.exports = {
 			screens: {
 				'3xl': '1920px',
 			},
+			// ── Content width caps ──────────────────────────────────────────────
+			// Consumed by .section-x-padding in globals.css, not used directly as
+			// a class elsewhere. These are project-specific numbers pulled straight
+			// from the designer's mockups — not Tailwind defaults, not values to
+			// round or reuse from another client's config.
 			maxWidth: {
-				'8xl': '1920px',
-				container: '1440px',
+				'8xl': '1920px', // confirm still in use before touching — unrelated to the two below
+				container: '1440px', // designer's standard/base mockup width — the default content cap
+				wide: '1728px', // designer's confirmed "larger screens" mockup width — cap from 1920px (3xl) up
 			},
 			transitionDuration: {
 				DEFAULT: '300ms',

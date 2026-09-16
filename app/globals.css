@@ -53,8 +53,19 @@ body {
 	height: 100% !important;
 }
 
+/* Page content column. Padding scales up through the breakpoints, then
+   two width caps take over so content itself stops growing and the
+   leftover space becomes margin instead:
+     - below 1920px (3xl): capped at `container` (1440px) — the
+       designer's standard mockup width.
+     - 1920px and up: capped at `wide` (1728px) instead, so margins
+       don't just keep compounding off the 1440 base on large monitors.
+   Both values live in tailwind.config.js under maxWidth — update them
+   there, not here, when a new mockup width comes in. If a client's
+   designer never hands you a larger-screen mockup, delete the
+   `3xl:max-w-wide` step and let `container` be the only cap. */
 .section-x-padding {
-	@apply px-1 sm:px-1.25 md:px-2.5 lg:px-5 3xl:max-w-[130rem] 3xl:mx-auto;
+	@apply px-1 sm:px-1.25 md:px-2.5 lg:px-5 max-w-container mx-auto 3xl:max-w-wide;
 }
 
 @layer base {
